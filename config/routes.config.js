@@ -9,7 +9,7 @@ router.post("/users/doCreate", users.doCreate);
 router.get("/users/login", users.login);
 router.post("/users/doLogin", users.doLogin);
 
-router.get("/tweets/new", tweets.newTweet);
-router.get("/tweets", tweets.list);
+router.get("/tweets/create", tweets.newTweet);
+router.get("/tweets/list", tweets.list);
 
 module.exports = router;

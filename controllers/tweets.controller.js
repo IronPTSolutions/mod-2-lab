@@ -6,11 +6,11 @@ module.exports.list = (req, res, next) => {
   Tweet.find()
     .populate("user")
     .then((tweets) => {
-      res.render("tweets/list", { tweets });
+      res.render("/tweets/list", { tweets });
     })
     .catch((err) => {});
 };
 
 module.exports.newTweet = (req, res, next) => { 
-  res.render("tweets/create");
+  res.render("/tweets/create");
 }; 

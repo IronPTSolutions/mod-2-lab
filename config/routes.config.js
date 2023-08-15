@@ -5,9 +5,9 @@ const router = express.Router();
 
 
 router.get("/users", users.create);
-router.get("/users/doCreate", users.doCreate);
+router.post("/users/doCreate", users.doCreate);
 router.get("/users/login", users.login);
-router.get("/users/doLogin", users.doLogin);
+router.post("/users/doLogin", users.doLogin);
 
 router.get("/tweets/new", tweets.newTweet);
 router.get("/tweets", tweets.list);

@@ -9,7 +9,7 @@ require("./config/db.config");
 /** Configure view engine **/
 app.set("view engine", "hbs");
 app.set("views", `${__dirname}/views`);
-hbs.registerPartials(`${__dirname}/views/partials`);
+hbs.registerPartials(__dirname + "/views/partials");
 
 /** Configure static files**/
 app.use(express.static("public"));

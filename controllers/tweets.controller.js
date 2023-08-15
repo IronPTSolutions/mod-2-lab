@@ -1,7 +1,16 @@
-module.exports.newTweet = (req, res, next) => { 
-  res.render("tweets/newTweet");
+const User = require("../models/user.model");
+const Tweet = require("../models/tweet.model");
+
+
+module.exports.list = (req, res, next) => { 
+  Tweet.find()
+    .populate("user")
+    .then((tweets) => {
+      res.render("tweets/list", { tweets });
+    })
+    .catch((err) => {});
 };
 
-module.exports.tweets = (req, res, next) => { 
-  res.render("tweets/list");
-};
+module.exports.newTweet = (req, res, next) => { 
+  res.render("tweets/create");
+}; 

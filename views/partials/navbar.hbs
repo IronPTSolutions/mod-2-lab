@@ -1,0 +1,15 @@
+<nav class="navbar bg-body-tertiary">
+  <div class="container d-flex justify-space-between">
+    {{#if currentUser}}
+      <a class="navbar-brand" href="/tweets/{{currentUser.username}}">Mini Twitter</a>
+    {{else}}
+      <a class="navbar-brand" href="/tweets">Mini Twitter</a>
+    {{/if}}
+    {{#if currentUser}}
+      <a class="navbar-brand" href="/profile/{{currentUser.id}}">{{currentUser.username}}</a>
+      <form method="POST" action="/logout">
+        <button type="submit" class="btn btn-danger">Log out</button>
+      </form>
+    {{/if}}
+  </div>
+</nav>

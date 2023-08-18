@@ -1,0 +1,12 @@
+<div class="card text-center mb-3" style="width: 18rem;">
+  <div class="card-body">
+    <p>Create by: {{tweet.user.name}}</p>
+    <h5 class="card-title"> {{tweet.title}}</h5>
+    <p class="card-text">{{tweet.message}}</p>
+    {{#if cantDelete}}
+      <form method="POST" action="/tweets/{{tweet.id}}/delete">
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+    {{/if}}
+  </div>
+</div>

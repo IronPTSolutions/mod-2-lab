@@ -1,0 +1,17 @@
+<h3>Tweets list</h3>
+{{#each tweets}}
+<div>
+    <div class="mb-3">
+        <label class="fw-bold">Nombre</label>
+        <div>{{this.user.username}}</div>
+    </div>
+    <div class="mb-3">
+        <label class="fw-bold">Created at</label>
+        <div>{{this.createdAt}}</div>
+    </div>
+    <div class="mb-3">
+        <label class="fw-bold">Tweet</label>
+        <div>{{this.message}}</div>
+    </div>
+</div>
+{{/each}}

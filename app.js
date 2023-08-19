@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const hbs = require("hbs");
+const morgan = require("morgan");
 
 
 //connect to db

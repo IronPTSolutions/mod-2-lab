@@ -29,7 +29,7 @@ mongoose.connection.dropDatabase().then(() => {
     for (let i = 0; i < 100; i++) {
       Tweet.create({
         text: faker.lorem.paragraph(3),
-        author: users._id,
+        author: users[Math.floor(Math.random() * users.length)]._id,
       }).then((tweet) => {
         console.log("Tweet created");
       }) .catch(console.error);

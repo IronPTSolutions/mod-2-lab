@@ -1,0 +1,9 @@
+.sticky-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .sticky-footer .text-center {
+    padding: 10px; 
+  }

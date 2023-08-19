@@ -1,0 +1,14 @@
+<div class="mb-3 d-flex border-bottom pb-3">
+    <a
+      class="btn btn-primary me-2"
+      href="/tweets/{{currentUser.username}}"
+    >Back</a>
+</div>
+<form method="POST" action="/tweets">
+  <div class="mb-3">
+    <label class="form-label">Message</label>
+    <textarea name="message" class="form-control" rows="5"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-success">Create</button>
+</form>

@@ -8,6 +8,10 @@ require("./config/db.config")
 //vistas
 app.set("view engine", "hbs");
 app.set("views", `${__dirname}/views`);
+hbs.registerPartials(__dirname + "/views/partials")
+hbs.registerHelper("inputDateFormat", (date) => {
+    return date.toISOString().split("T")[0];
+  });
 
 /** logger */
 app.use(morgan("dev"));

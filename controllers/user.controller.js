@@ -1,5 +1,6 @@
 const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
+const Tweet = require("../models/tweet.model");
 
 module.exports.create = (req, res, next) => {
   res.render("users/new");
@@ -29,7 +30,7 @@ module.exports.doLogin = (req, res, next) => {
     if (user) {
       bcrypt.compare(req.body.password, user.password).then((match) => {
         if (match) {
-          res.redirect("/profile"); // TODO: create session
+          res.redirect("/tweets"); // TODO: create session
         } else {
           res.redirect("/login"); // TODO: show error
         }
@@ -39,3 +40,23 @@ module.exports.doLogin = (req, res, next) => {
     }
   });
 };
+
+module.exports.detail = (req, res, next) => {
+    
+    User.findById(req.params.id)
+        
+      .then((user) => {
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+
+        Tweet.find({ user: user._id })
+        .populate('user')
+          .then((tweets) => {
+            res.render("users/detail", { user, tweets });
+          })
+          .catch(next);
+      })
+      .catch(next);
+};
+

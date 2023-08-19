@@ -1,0 +1,34 @@
+
+<div>
+    <div class="mb-3">
+      <label class="fw-bold">@{{user.userName}}</label>
+      
+    </div>
+    <div class="mb-3">
+      <label class="fw-bold">nombre</label>
+      <div>
+         {{user.name}}
+       
+    </div>
+
+    <h6>Tweets</h6>
+
+   <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    {{#each tweets as |tweet|}}
+        <h5 class="card-title">{{tweet.user.userName}}</h5>
+        <p class="card-subtitle mb-2 text-body-secondary">{{inputDateFormat tweet.createdAt}}</p>
+        <h6 class="card-text">{{tweet.message}}</h6>
+   {{/each}} 
+    <a href="#" class="card-link">like</a>
+    <a href="#" class="card-link">delete</a>
+    <a href="/user/{{tweet.user}}" class="card-link">detail</a>
+  </div>
+</div>
+
+<div class="mb-3 d-flex border-bottom pb-3">
+    <a class="btn btn-primary" href="/tweets/new">Nuevo tweet</a>
+</div>
+
+</div>
+ 

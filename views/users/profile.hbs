@@ -1,0 +1,41 @@
+
+
+
+<div class="container mt-5">
+  <h2 class="mb-4">Perfil</h2>
+
+  <div class="card">
+    <div class="card-body">
+      <!-- Imagen de avatar -->
+        <div class="text-center mb-4">
+    <!-- Revisa si el usuario tiene un avatar, de lo contrario, muestra el ícono por defecto -->
+    {{#if user.avatar}}
+        <img src="{{user.avatar}}" alt="Avatar de {{user.name}}" class="rounded-circle" width="100">
+    {{else}}
+        <i class="fas fa-user-circle fa-5x"></i>
+    {{/if}}
+  </div>
+
+      <!-- Nombre y Nickname -->
+      <h3 class="card-title">{{user.name}}</h3>
+      <p class="card-text">Username: {{user.username}}</p>
+
+      <!-- Link para crear un nuevo Tweet -->
+      <a href="/tweets/new" class="btn btn-primary mb-3">Crear Tweet</a>
+
+      <!-- Tweets -->
+      <h4 class="mb-3">Tweets:</h4>
+      <ul class="list-group">
+        {{#each user.tweets}}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{this.message}}
+            <form action="/tweets/{{this._id}}/delete" method="POST">
+              <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+            </form>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>
+

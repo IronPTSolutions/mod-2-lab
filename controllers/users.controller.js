@@ -28,15 +28,13 @@ module.exports.login = (req, res, next) => {
 }
 
 module.exports.doLogin = (req, res, next) => {
-
-    // console.log(req.body)
     
     User.findOne({username: req.body.username}).then((user) => {
         if(user){
             bcrypt.compare(req.body.password, user.password).then((match) => {
                 if(match){
                     req.session.userId = user.id;
-                    res.redirect("/")
+                    res.redirect("/profile")
                 } else {
                     res.redirect('/login')
                 }
@@ -45,4 +43,16 @@ module.exports.doLogin = (req, res, next) => {
             res.redirect("/login")
         }
     })
+
+}
+
+module.exports.profile = (req, res, next) => {
+    User.findById(req.session.userId)
+        .populate('tweets')
+        .then(userWithTweets => {
+            
+            res.render('users/profile', { user: userWithTweets })
+            
+        })
+        .catch(next)
 }

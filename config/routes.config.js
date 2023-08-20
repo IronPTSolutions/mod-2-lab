@@ -8,16 +8,19 @@ router.get('/users/new', user.create)
 router.post('/users/create', user.doCreate)
 router.get("/login", user.login)
 router.post("/login", user.doLogin)
+router.get('/profile', user.profile)
 
-//crud posts
+
+
+//crud tweets
 router.get('/tweets/new', tweet.create)
 router.post('/tweets/create', tweet.doCreate)
 router.get('/tweets', tweet.list)
-
+router.post('/tweets/:id/delete', tweet.delete)
 
 
 router.get('/', (req, res) => {
-    res.render('Home')
+    res.render('home')
 })
 
 module.exports = router;

@@ -13,7 +13,7 @@ module.exports.doCreate = (req, res, next) => {
         user: req.session.userId
     })
     .then((tweet) => {
-        res.redirect('/tweets')
+        res.redirect('/profile')
     })
     .catch(next)
 }
@@ -34,4 +34,12 @@ module.exports.list = (req, res, next) => {
             res.render('tweets/list', { tweets })
         })
         .catch(() => {});
+}
+
+module.exports.delete = (req, res, next) => {
+    Tweets.findByIdAndDelete(req.params.id)
+        .then(() => {
+            res.redirect("/profile");
+        })
+        .catch(next)
 }

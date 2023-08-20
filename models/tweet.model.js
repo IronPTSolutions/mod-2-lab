@@ -10,6 +10,6 @@ const schema = new mongoose.Schema(
     }
 );
 
-const Post = mongoose.model("Post", schema);
+const Tweets = mongoose.model("Tweets", schema);
 
-module.exports = Post
+module.exports = Tweets

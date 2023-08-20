@@ -15,6 +15,10 @@ app.use(session);
 app.set('view engine', 'hbs');
 app.set('views', `${__dirname}/views`);
 
+const hbs = require('hbs');
+hbs.registerPartials(__dirname + '/views/partials');
+
+
 
 app.use(express.urlencoded({ extended: true }));
 

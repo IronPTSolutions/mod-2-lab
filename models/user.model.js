@@ -9,6 +9,13 @@ const schema = new mongoose.Schema(
     }
 );
 
+schema.virtual('tweets', {
+    ref: 'Tweets',
+    localField: '_id',
+    foreignField: 'user',
+    justOne: false,
+});
+
 const User = mongoose.model('User', schema);
 
 module.exports = User 

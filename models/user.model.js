@@ -5,7 +5,7 @@ const schema = new mongoose.Schema(
     name: { type: String },
     username: { type: String },
     password: { type: String },
-    avatar: { type: String, },
+    avatar: { type: String },
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
   {

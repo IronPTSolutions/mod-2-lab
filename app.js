@@ -11,16 +11,16 @@ require("./config/hbs.config");
 app.set("view engine", "hbs");
 app.set("views", `${__dirname}/views`);
 
-/** logger */
+/** Logger */
 app.use(morgan("dev"));
 
-/** session middleware */
+/** Session middleware */
 app.use(session);
 
 /** Support req.body **/
 app.use(express.urlencoded({ extended: true }));
 
-/** Congiure static files */
+/** Configure static files */
 app.use(express.static("public"));
 
 /** Routes */

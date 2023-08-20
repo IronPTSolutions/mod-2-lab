@@ -12,7 +12,7 @@ module.exports.doCreate = (req, res, next) => {
       name: req.body.name,
       username: req.body.username,
       password: hash,
-      avatar: "https://i.pravatar.cc/150?u=iron-fake@pravatar.com",
+      avatar: `https://i.pravatar.cc/150?u=iron-fake@pravatar.com`,
     })
       .then(() => {
         res.redirect("/login");
@@ -56,7 +56,6 @@ module.exports.edit = (req, res, next) => {
 };
 
 module.exports.doEdit = (req, res, next) => {
-  // Note: never trust the HTTP client, always whitelist your expected properties
   User.findByIdAndUpdate(req.params.id, {
     name: req.body.name,
     username: req.body.username,
@@ -69,13 +68,29 @@ module.exports.doEdit = (req, res, next) => {
 };
 
 module.exports.profile = (req, res, next) => {
-  User.findById(req.params.id);
   Tweet.find({ user: req.user.id })
     .sort({ createdAt: -1 })
     .populate("user")
     .then((data) => {
-      const cantDelete = data && data.map((i) => i.user.id === req.user.id)
-      res.render("users/profile", { user: data[0].user, tweets: data, cantDelete: cantDelete[0] });
+      if (data.length > 0) {
+        const cantDelete = data && data.map((i) => i.user.id === req.user.id);
+        res.render("users/profile", {
+          user: data[0].user,
+          tweets: data,
+          cantDelete: cantDelete[0],
+        });
+      } else {
+        User.findById(req.params.id)
+          .sort({ createdAt: -1 })
+          .populate("user")
+          .then((user) => {
+            res.render("users/profile", {
+              user: user,
+              tweets: [],
+              cantDelete: false,
+            });
+          });
+      }
     })
 
     .catch(next);

@@ -1,46 +1,51 @@
-<div class="mb-3 d-flex">
-    <a class="btn btn-primary me-2" href="/tweets/{{user.username}}">Back</a>
-    <a class="btn btn-primary me-2" href="/profile/{{user.id}}/edit">Editar</a>
-</div>
 
-<div>
-    <img
-    src="{{user.avatar}}"
-    alt="{{user.name}}"
-  />
-    <div class="mb-3">
-      <label class="fw-bold">Name</label>
-      <div>{{user.name}}</div>
-    </div>
-    <div class="mb-3">
-      <label class="fw-bold">UserName</label>
-      <div>{{user.username}}</div>
-    </div>
-
-    <div class="mb-3">
-      <label class="fw-bold">Date Created</label>
-      <div>{{prettyDate user.createdAt}}</div>
-    </div>
-    <div>
-  <h2 class="pb-4 fw-bolder">Tweets</h2>
-  </div>
-  <div class='row row-cols-1 row-cols-md-4 g-2'>
-{{#if cantDelete}}
-    {{#each tweets as |tweet|}}
-        <div class='col'>
-        <div class='card border border-0'>
-            {{> tweet tweet=tweet cantDelete=true}}
+<div class="container mb-5">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center">Twitter User Profile</h1>
+        <div class="mb-3 d-flex">
+          <a class="btn btn-primary me-2" href="/tweets/{{user.username}}">Back</a>
+          
         </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-3 d-flex justify-content-center align-items-start">
+                <img src="{{user.avatar}}" alt="User Profile Image" class="img-fluid rounded-circle">
+              </div>
+              <div class="col-md-9">
+                <div class="d-flex justify-content-between">
+                  <h5 class="card-title">@{{user.username}}</h5>
+                  <a class="btn btn-primary me-2" href="/profile/{{user.id}}/edit">Edit</a>
+                </div>                
+                <p class="card-text">Name: {{user.name}}</p>
+                <ul class="list-unstyled">
+                  <li>Tweets: {{tweets.length}}</li>
+                </ul>
+                <h2 class="pb-4 fw-bolder">Tweets</h2>
+                <div class='row row-cols-1 row-cols-md-2 g-2'>
+                  {{#if cantDelete}}
+                      {{#each tweets as |tweet|}}
+                        <div class='col'>
+                          <div class='card border border-0'>
+                              {{> tweet tweet=tweet cantDelete=true}}
+                          </div>
+                        </div>
+                      {{/each}}
+                  {{else}}
+                      {{#each tweets as |tweet|}}
+                      <div class='col'>
+                        <div class='card border border-0'>
+                          {{> tweet tweet=tweet}}
+                        </div>
+                      </div>
+                      {{/each}}
+                  {{/if}}  
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    {{/each}}
-{{else}}
-    {{#each tweets as |tweet|}}
-    <div class='col'>
-      <div class='card border border-0'>
-        {{> tweet tweet=tweet}}
       </div>
     </div>
-    {{/each}}
-{{/if}}  
-</div>
 </div>

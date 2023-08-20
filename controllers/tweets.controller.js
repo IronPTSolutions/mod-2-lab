@@ -1,10 +1,16 @@
 const Tweet = require("../models/tweet.model");
+const moment = require("moment");
 
 module.exports.list = (req, res, next) => {
   Tweet.find({})
     .sort({ createdAt: -1 })
     .populate("user")
     .then((tweets) => {
+      for (let tweet of tweets) {
+        const otherDate = moment(tweet.createdAt);
+        const difference = moment(otherDate).fromNow();
+        tweet.daysSinceCreated = difference;
+      }
       res.render("tweets/list", { tweets });
     })
     .catch(() => {});
@@ -15,13 +21,18 @@ module.exports.listId = (req, res, next) => {
     .sort({ createdAt: -1 })
     .populate("user")
     .then((tweets) => {
+      for (let tweet of tweets) {
+        const otherDate = moment(tweet.createdAt);
+        const difference = moment(otherDate).fromNow();
+        tweet.daysSinceCreated = difference;
+      }
       res.render("tweets/list", { tweets });
     })
     .catch(() => {});
 };
 
 module.exports.create = (req, res, next) => {
-    Tweet.find({})
+  Tweet.find({})
     .populate("user")
     .then(() => {
       res.render("tweets/new");
@@ -30,7 +41,6 @@ module.exports.create = (req, res, next) => {
 };
 
 module.exports.doCreate = (req, res, next) => {
-  // Note: never trust the HTTP client, always whitelist your expected properties
   Tweet.create({
     title: req.body.title,
     message: req.body.message,

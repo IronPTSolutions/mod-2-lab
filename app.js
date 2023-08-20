@@ -3,7 +3,9 @@ const hbs = require ('hbs');
 const morgan = require("morgan")
 const app = express();
 
+
 require("./config/db.config")
+const session = require('./config/session.config')
 
 //vistas
 app.set("view engine", "hbs");
@@ -12,6 +14,11 @@ hbs.registerPartials(__dirname + "/views/partials")
 hbs.registerHelper("inputDateFormat", (date) => {
     return date.toISOString().split("T")[0];
   });
+
+
+
+//session middleware
+app.use(session);
 
 /** logger */
 app.use(morgan("dev"));

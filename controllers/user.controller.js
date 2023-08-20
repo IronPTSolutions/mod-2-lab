@@ -25,11 +25,14 @@ module.exports.login = (req, res, next) => {
   res.render("users/login");
 };
 
+const sessions = {}
+
 module.exports.doLogin = (req, res, next) => {
   User.findOne({ userName: req.body.userName }).then((user) => {
     if (user) {
       bcrypt.compare(req.body.password, user.password).then((match) => {
         if (match) {
+           req.session.userId = user.id
           res.redirect("/tweets"); // TODO: create session
         } else {
           res.redirect("/login"); // TODO: show error
@@ -60,3 +63,4 @@ module.exports.detail = (req, res, next) => {
       .catch(next);
 };
 
+module.exports.sessions = sessions;

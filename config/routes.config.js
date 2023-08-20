@@ -3,6 +3,9 @@ const router = express.Router();
 //controllers
 const users = require("../controllers/user.controller");
 const tweets = require("../controllers/tweet.controller")
+//middlewares
+//const secure = ('..middlewares/secure.middleware')
+
 
 //users routes
 router.get("/users/new", users.create);

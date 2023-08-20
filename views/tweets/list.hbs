@@ -8,9 +8,10 @@
         <h5 class="card-title">@{{tweet.user.userName}}</h5>
         <p class="card-subtitle mb-2 text-body-secondary">{{inputDateFormat tweet.createdAt}}</p>
         <h6 class="card-text">{{tweet.message}}</h6>
-   {{/each}} 
+   
     <a href="#" class="card-link">like</a>
     <a href="#" class="card-link">delete</a>
     <a href="/user/{{tweet.user}}" class="card-link">detail</a>
+    {{/each}} 
   </div>
 </div>

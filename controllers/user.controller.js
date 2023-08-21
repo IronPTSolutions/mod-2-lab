@@ -44,23 +44,26 @@ module.exports.doLogin = (req, res, next) => {
   });
 };
 
-module.exports.detail = (req, res, next) => {
-    
-    User.findById(req.params.id)
-        
-      .then((user) => {
-        if (!user) {
-            return res.status(404).send("User not found");
-        }
 
-        Tweet.find({ user: user._id })
+
+module.exports.detail = (req, res, next) => {
+  const userId = req.params.id;
+
+  User.findById(userId)
+    .then(user => {
+      if (!user) {
+        res.render('/login');
+      }
+
+      Tweet.find({ user: user._id })
         .populate('user')
-          .then((tweets) => {
-            res.render("users/detail", { user, tweets });
-          })
-          .catch(next);
-      })
-      .catch(next);
+        .then(tweets => {
+          res.render("users/detail", { user, tweets });
+        })
+        .catch(next);
+    })
+    .catch(next);
 };
+
 
 module.exports.sessions = sessions;

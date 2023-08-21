@@ -34,34 +34,20 @@ module.exports.doCreate = (req, res, next) => {
     .catch(next);
 }
 
-
-module.exports.delete =(req, res, next) => {
-   module.exports.delete = (req, res, next) => {
-    const userId = req.session.userId; 
+module.exports.delete = (req, res, next) => {
     const tweetId = req.params.id; 
-
+    const userId = req.session.userId; 
+  
     if (!userId) {
-        return res.redirect('/login'); 
+      return res.redirect('/login'); 
     }
-
-   
-    Tweet.findOne({ _id: tweetId, user: userId })
-        .then((tweet) => {
-            if (!tweet) {
-                return res.redirect('/tweets'); 
-            }
-
-            
-            tweet.remove()
-                .then(() => {
-                    res.redirect('/tweets');
-                })
-                .catch(next);
-        })
-        .catch(next);
-}
-}
-
+  
+    Tweet.findOneAndRemove({ _id: tweetId, user: userId })
+      .then(() => {
+        res.redirect("/tweets");
+      })
+      .catch(next);
+  };
 /*const Tweet = require("../models/tweet.model");
 
 

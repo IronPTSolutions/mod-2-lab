@@ -23,5 +23,6 @@
   },
   "bin": {
     "mod-2-lab": "bin/seeds.js"
-  }
+  },
+  "devDependencies": {}
 }

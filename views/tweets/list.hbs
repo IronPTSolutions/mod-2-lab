@@ -5,13 +5,18 @@
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     {{#each tweets as |tweet|}}
-        <h5 class="card-title">@{{tweet.user.userName}}</h5>
-        <p class="card-subtitle mb-2 text-body-secondary">{{inputDateFormat tweet.createdAt}}</p>
-        <h6 class="card-text">{{tweet.message}}</h6>
+      <h5 class="card-title">@{{tweet.user.userName}}</h5>
+      <p class="card-subtitle mb-2 text-body-secondary">{{inputDateFormat tweet.createdAt}}</p>
+      <h6 class="card-text">{{tweet.message}}</h6>
    
-    <a href="#" class="card-link">like</a>
-    <a href="#" class="card-link">delete</a>
-    <a href="/user/{{tweet.user}}" class="card-link">detail</a>
+      <a href="#" class="card-link">like</a>
+      
+      <form action="/tweets/delete/{{tweet._id}}" method="POST">
+        <button type="submit" class="card-link">delete</button>
+      </form>
+      
+      <a href="/users/{{tweet.user._id}}" class="card-link">detail</a>
     {{/each}} 
   </div>
 </div>
+

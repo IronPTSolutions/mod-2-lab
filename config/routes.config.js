@@ -18,7 +18,7 @@ router.post("/login", users.doLogin);
 router.get("/tweets", tweets.list);
 router.get("/tweets/new", tweets.create);
 router.post("/tweets", tweets.doCreate);
-router.post("/tweets/:id/delete", tweets.delete)
+router.post("/tweets/delete/:id", tweets.delete)
 
 router.get("/", (req,res) => res.redirect ("/tweets"));
 

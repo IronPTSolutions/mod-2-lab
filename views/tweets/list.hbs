@@ -1,18 +1,30 @@
-<h3>Tweets list</h3>
-{{#each tweets}}
-<div>
-    <div class="mb-3">
-        <label class="fw-bold">Nombre:</label>
-        <div>{{this.user.name}}</div>
+
+<div class="container mt-5">
+    <h3 class="mb-4">Lista de Tweets</h3>
+
+    {{#each tweets}}
+    <div class="card mb-4">
+        <!-- Header del tweet con el avatar y nombre -->
+        <div class="card-header d-flex align-items-center">
+            <!-- Asumiendo que el usuario tiene un avatar, de lo contrario, puedes usar el ícono por defecto como en ejemplos anteriores -->
+                {{#if user.avatar}}
+                    <img src="{{user.avatar}}" alt="Avatar de {{user.name}}" class="rounded-circle" width="100">
+                {{else}}
+                    <i class="fas fa-user-circle fa-5x"></i>
+                {{/if}}
+            <strong style="margin-left: 1rem;">{{this.user.name}}</strong>
+        </div>
+        
+        <!-- Cuerpo del tweet con el mensaje -->
+        <div class="card-body">
+            <p>{{this.message}}</p>
+        </div>
+
+        <!-- Footer del tweet con la fecha -->
+        <div class="card-footer text-muted">
+            {{this.createdAt}}
+        </div>
     </div>
-    <div class="mb-3">
-        <label class="fw-bold">Created at:</label>
-        <div>{{this.createdAt}}</div>
-    </div>
-    <div class="mb-3">
-        <label class="fw-bold">Tweet:</label>
-        <div>{{this.message}}</div>
-    </div>
+    {{/each}}
 </div>
-<br>
-{{/each}}
+

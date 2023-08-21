@@ -1,7 +1,6 @@
 const Tweets = require('../models/tweet.model');
 const moment = require('moment')
 
-
 module.exports.create = (req, res, next) => {
     res.render('tweets/create')
 }

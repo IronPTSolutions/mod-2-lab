@@ -1,17 +1,20 @@
+<div class="card" style="width: 18rem;">
+  <img src={{user.avatar}} class="card-img-top" alt="user-avatar">
+  <div class="card-body">
+    <h3 class="text-primary">@{{user.userName}}</h3>
+    
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Name : {{user.name}}</li>
+    <li class="list-group-item">Created at: {{inputDateFormat user.createdAt}}</li>
+    
+  </ul>
+ 
+</div>
 
-<div>
-    <div class="mb-3">
-      <label class="fw-bold">@{{user.userName}}</label>
-      
-    </div>
-    <div class="mb-3">
-      <label class="fw-bold">nombre</label>
-      <div>
-         {{user.name}}
-       
-    </div>
 
-    <h6>Tweets</h6>
+
+    <h3>Tweets</h3>
 
     {{#each tweets as |tweet|}}
 
@@ -29,9 +32,4 @@
 {{/each}} 
 
 
-<div class="mb-3 d-flex border-bottom pb-3">
-    <a class="btn btn-primary" href="/tweets/new">Nuevo tweet</a>
-</div>
-
-</div>
  

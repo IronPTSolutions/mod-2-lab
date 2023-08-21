@@ -1,22 +1,37 @@
 <div class="mb-3 d-flex border-bottom pb-3">
+   
+   <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+    <a class="btn btn-success" href="/tweets/users/new">Sign up</a>
+    <a class="btn btn-warning" href="/tweets/Log in">Log in</a>
     <a class="btn btn-primary" href="/tweets/new">Nuevo tweet</a>
 </div>
+</div>
 
+
+    {{#each tweets as |tweet|}}
+    <div class="d-grid gap-3">
+      
 <div class="card" style="width: 18rem;">
   <div class="card-body">
-    {{#each tweets as |tweet|}}
-      <h5 class="card-title">@{{tweet.user.userName}}</h5>
+
+      <h3 class="text-primary">@{{tweet.user.userName}}</h3>
       <p class="card-subtitle mb-2 text-body-secondary">{{inputDateFormat tweet.createdAt}}</p>
       <h6 class="card-text">{{tweet.message}}</h6>
-   
-      <a href="#" class="card-link">like</a>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <a class="btn btn-primary" href="#" role="button">Like</a>
       
       <form action="/tweets/delete/{{tweet._id}}" method="POST">
-        <button type="submit" class="card-link">delete</button>
+         <button type="submit" class="btn btn-outline-danger">Delete</button>
       </form>
       
-      <a href="/users/{{tweet.user._id}}" class="card-link">detail</a>
-    {{/each}} 
+      <a href="/users/{{tweet.user._id}}" class="btn btn-outline-warning">Detail</a>
+    </div>  
+
+     </div>    
   </div>
 </div>
+    {{/each}} 
+    
+
 

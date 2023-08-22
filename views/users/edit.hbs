@@ -1,0 +1,14 @@
+<div class="mb-3 d-flex border-bottom pb-3">
+    <a class="btn btn-primary me-2" href="/profile/{{user.id}}">Volver</a>
+</div>
+<form method="POST" action="/profile/{{user.id}}">
+  <div class="mb-3">
+    <label class="form-label">Name</label>
+    <input name="name" type="text" class="form-control" placeholder="Name User" value="{{user.name}}"/>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">UserName</label>
+    <input name="username" type="text" class="form-control" placeholder="User Name" value="{{user.username}}"/>
+  </div>
+  <button type="submit" class="btn btn-success">Editar</button>
+</form>

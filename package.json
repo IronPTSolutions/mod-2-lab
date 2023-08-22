@@ -1,0 +1,32 @@
+{
+  "name": "mod-2-lab",
+  "version": "1.0.0",
+  "description": "En este laboratorio repasaremos los conceptos principales del módulo 2:  -\tCreación de un proyecto Express desde 0 -\tPlantillas de HBS - Modelos de Mongoose -\tRegistro/Login de usuarios - Securización de rutas - Relaciones entre modelos -\tCRUDs -\tFormularios",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./app.js",
+    "dev": "nodemon ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maria-colturi/mod-2-lab.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Maria-colturi/mod-2-lab/issues"
+  },
+  "homepage": "https://github.com/Maria-colturi/mod-2-lab#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "connect-mongo": "^5.0.0",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "hbs": "^4.2.0",
+    "mongoose": "^7.4.3"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
+    "nodemon": "^3.0.1"
+  }
+}

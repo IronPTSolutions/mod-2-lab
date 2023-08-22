@@ -14,7 +14,7 @@ router.get("/profile", users.details);
 router.get("/tweets/new", secure.check, tweets.create);
 router.post("/tweets", secure.check, tweets.doCreate);
 router.get("/tweets", tweets.list);
-router.post('/tweets/:id/delete', tweets.delete)
+router.post('/tweets/:id/delete', secure.check, tweets.delete)
 
 
 module.exports = router

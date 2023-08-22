@@ -1,0 +1,15 @@
+<main class="mb-3">
+    <h2>TWEETS FOR YOU</h1>
+
+    <div class="mb-3">
+        {{#each tweets as |tweet|}}
+    <h3>{{tweet.userName}}</h3>   
+    <p class="fw-bold">{{tweet.message}}</p>
+    </div>
+    
+    <form action="/tweets/{{tweet._id}}/delete" method="POST">
+        <button class="mb-3" type="submit">Delete</button>
+      </form>
+      {{/each}}
+
+</main>

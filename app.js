@@ -10,6 +10,10 @@ app.set('views', `${__dirname}/views`);
 app.use(express.urlencoded());
 app.use(logger('dev'));
 
+const sessionConfig = require('./config/session.config');
+app.use(sessionConfig.session);
+app.use(sessionConfig.loadSessionUser);
+
 const routes = require('./config/routes.config');
 app.use('/', routes);
 

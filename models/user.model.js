@@ -39,8 +39,16 @@ const userSchema = new Schema({
     default: function () {
       return `https://i.pravatar.cc/150?u=${this.email}`
     }
-  }
+  },
 }, { timestamps: true });
+
+
+userSchema.virtual('tweets', {
+  ref: 'Tweet',
+  localField: '_id',
+  foreignField: 'user',
+  limit: 10
+})
 
 
 userSchema.pre('save', function(next) {

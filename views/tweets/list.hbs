@@ -1,0 +1,21 @@
+<div class="row mb-5">
+  <div class="col-12">
+    <form action="/tweets" method="post">
+      <div class="input-group">
+        <span class="input-group-text"><i class="fa fa-edit"></i></span>
+        <textarea class="form-control {{#if errors.message}}is-invalid{{/if}}" name="message"
+          aria-label="With textarea">{{tweet.message}}</textarea>
+        <button class="btn btn-outline-primary" type="submit"><i class="fa fa-twitter"></i></button>
+        {{#if errors.message}}<div class="invalid-feedback">{{errors.message}}</div>{{/if}}
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  {{#each tweets as |tweet|}}
+    <div class="col-12 g-2">
+      {{>tweet tweet=tweet user=tweet.user }}
+    </div>
+  {{/each}}
+</div>

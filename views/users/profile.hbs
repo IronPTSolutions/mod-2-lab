@@ -1,1 +1,20 @@
-<h1>{{user.name}}</h1>
+<div class="row justify-content-center">
+  <div class="col-12 col-md-3 mb-2">
+    <div class="card">
+      <img src="{{user.avatarUrl}}" class="card-img-top" alt="{{user.name}}">
+      <div class="card-body">
+        <h5 class="card-title">{{user.name}}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{user.username}}</li>
+        <li class="list-group-item">{{user.email}}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-12"><h3 class="fw-light mb-0">Recent activity</h3><hr class="mb-3"></div>
+  {{#each user.tweets as |tweet|}}
+    <div class="col-12">
+      {{>tweet tweet=tweet user=../user }}
+    </div>
+  {{/each}}
+</div>

@@ -3,6 +3,9 @@
     <h1 class="mb-3">Login</h1>
     <div class="card">
       <div class="card-body">
+
+        {{#if info}}<div class="alert alert-primary" role="alert">{{ info }}</div>{{/if}} 
+
         <form action="/login" method="post">
 
           {{!-- USERNAME --}}

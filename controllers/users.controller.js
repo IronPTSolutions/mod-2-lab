@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 module.exports.register = (req, res, next) => res.render('users/register');
 
 module.exports.doRegister = (req, res, next) => {
-  delete req.body.role;
   User.findOne({ username: req.body.username })
     .then((user) => {
       if (user) {
@@ -16,7 +15,10 @@ module.exports.doRegister = (req, res, next) => {
         })
       } else {
         return User.create(req.body)
-          .then(() => res.redirect('/login'))
+          .then(() => {
+            req.flash('data', JSON.stringify({ info: 'Please login in'}));
+            res.redirect('/login')
+          })
       }
     })
     .catch((error) => {

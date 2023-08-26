@@ -21,6 +21,7 @@ module.exports.loadSessionUser = (req, res, next) => {
   const userId = req.session.userId;
   if (userId) {
     User.findById(userId)
+      .populate('tweets')
       .then((user) => {
         req.user = user;
         res.locals.currentUser = user;

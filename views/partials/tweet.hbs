@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-header">
+    <img class="rounded-circle" src="{{user.avatarUrl}}" alt="{{user.username}}" width="25" />
+    {{user.username}} - <span class="text-muted">{{elapsedTime tweet.createdAt}}</span>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{tweet.message}}</p>
+    </blockquote>
+  </div>
+</div>

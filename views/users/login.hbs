@@ -1,25 +1,32 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3">
-      <h1 class="text-center">Twitter Login</h1>
-      <form method="POST" action="/login">
-        <div class="mb-3">
-          <label for="username" class="form-label">Username</label>
-          <input type="text" class="form-control" name="username" />
-        </div>
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" name="password" />
-        </div>
-        <div class="d-flex justify-content-evenly">
-          <div class="mb-3">
-            <input type="submit" class="btn btn-primary" value="Login" />
+      <h1 class="text-center my-4">Twitter Login</h1>
+      <form action="/login" method="post">
+          {{!-- USERNAME --}}
+          <div class="input-group mb-1">
+            <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>
+            <input type="text" name="username" class="form-control {{#if errors.username}}is-invalid{{/if}}" placeholder="Username"
+              aria-label="Name" value="{{ user.username }}">
+            {{#if errors.username}}<div class="invalid-feedback">{{ errors.username }}</div>{{/if}}
           </div>
-          <div class="mb-3">
-            <a class="btn btn-secondary me-2" href="/users/new">Register</a>
+
+          {{!-- PASSWORD --}}
+          <div class="input-group mb-1">
+            <span class="input-group-text"><i class="fa fa-fw fa-lock"></i></span>
+            <input type="password" name="password" class="form-control {{#if errors.password}}is-invalid{{/if}}" placeholder="password"
+              aria-label="Name">
+            {{#if errors.password}}<div class="invalid-feedback">{{ errors.password }}</div>{{/if}}
           </div>
-        </div>
-      </form>
+
+          <div class="d-flex justify-content-evenly mt-4">
+            <button type="submit" class="btn btn-primary">Login</button>
+            <div class="">
+              <a class="btn btn-secondary" href="/users/new">Register</a>
+            </div>
+          </div>
+          
+        </form>
     </div>
   </div>
 </div>

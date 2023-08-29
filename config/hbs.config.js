@@ -9,3 +9,7 @@ hbs.registerHelper("inputDateFormat", (date) => {
 hbs.registerHelper("prettyDate", (date) => {
   return date.toLocaleDateString("es-ES", {});
 });
+
+hbs.registerHelper("navActive", (navigationPath, expectPath, options) => {
+  return navigationPath === expectPath ? "active" : ""
+});

@@ -1,17 +1,7 @@
-const User = require("../models/user.model");
-
-module.exports.check = (req, res, next) => {
-  if (req.session.userId) {
-    User.findById(req.session.userId).then((user) => {
-      if (user) {
-        req.user = user;
-        res.locals.currentUser = user;
-        next();
-      } else {
-        res.redirect("/login");
-      }
-    });
+module.exports.isAuthenticated = (req, res, next) => {
+  if (req.user) {
+    next();
   } else {
-    res.redirect("/tweets");
+    res.redirect("/login");
   }
 };

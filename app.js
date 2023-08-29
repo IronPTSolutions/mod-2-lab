@@ -1,10 +1,9 @@
 const express = require("express");
-const morgan = require("morgan");
+const logger = require('morgan');
 const app = express();
 
 /** Apply configs **/
 require("./config/db.config");
-const session = require("./config/session.config");
 require("./config/hbs.config");
 
 /** Configure view engine **/
@@ -12,13 +11,20 @@ app.set("view engine", "hbs");
 app.set("views", `${__dirname}/views`);
 
 /** Logger */
-app.use(morgan("dev"));
+app.use(logger("dev"));
 
 /** Session middleware */
-app.use(session);
+const sessionConfig = require('./config/session.config');
+app.use(sessionConfig.session);
+app.use(sessionConfig.loadSessionUser);
+
+app.use((req, res, next) => {
+  res.locals.navigationPath = req.path
+  next()
+})
 
 /** Support req.body **/
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded());
 
 /** Configure static files */
 app.use(express.static("public"));
@@ -27,6 +33,7 @@ app.use(express.static("public"));
 const router = require("./config/routes.config");
 app.use(router);
 
-app.listen(3000, () => {
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
   console.log("Ready!");
 });

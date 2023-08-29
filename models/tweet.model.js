@@ -3,14 +3,14 @@ const mongoose = require("mongoose");
 const schema = new mongoose.Schema(
   {
     title: { type: String },
-    message: { type: String },
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    message: { type: String, required: "Tweet message is required", },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", require: true },
   },
   {
     timestamps: true,
   }
 );
 
-const User = mongoose.model("Tweet", schema);
+const Tweet = mongoose.model("Tweet", schema);
 
-module.exports = User;
+module.exports = Tweet;

@@ -1,24 +1,38 @@
 const User = require("../models/user.model");
 const Tweet = require("../models/tweet.model");
-const bcrypt = require("bcrypt");
+const mongoose = require("mongoose");
 
 module.exports.create = (req, res, next) => {
   res.render("users/new");
 };
 
 module.exports.doCreate = (req, res, next) => {
-  bcrypt.hash(req.body.password, 10).then((hash) => {
-    User.create({
-      name: req.body.name,
-      username: req.body.username,
-      password: hash,
-      avatar: `https://i.pravatar.cc/150?u=iron-fake@pravatar.com`,
+  // Sirve para eleminar un parametro antes de enviarlo
+  delete req.body.role;
+  User.findOne({ username: req.body.username })
+    .then((user) => {
+      if (user) {
+        res.render("users/new", {
+          user: req.body,
+          errors: {
+            username: "Username already exists",
+          },
+        });
+      } else {
+        return User.create(req.body).then(() => res.redirect("/login"));
+      }
     })
-      .then(() => {
-        res.redirect("/login");
-      })
-      .catch(next);
-  });
+    .catch((error) => {
+      console.error(error);
+      if (error instanceof mongoose.Error.ValidationError) {
+        res.render("users/new", {
+          user: req.body,
+          errors: error.errors,
+        });
+      } else {
+        next(error);
+      }
+    });
 };
 
 module.exports.login = (req, res, next) => {
@@ -26,20 +40,31 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.doLogin = (req, res, next) => {
-  User.findOne({ username: req.body.username }).then((user) => {
-    if (user) {
-      bcrypt.compare(req.body.password, user.password).then((match) => {
-        if (match) {
-          req.session.userId = user.id;
-          res.redirect(`/tweets/${user.username}`);
-        } else {
-          res.redirect("/login");
-        }
-      });
-    } else {
-      res.redirect("/login");
-    }
-  });
+  function renderInvalidUsername() {
+    res.render("users/login", {
+      user: req.body,
+      errors: {
+        password: "Invalid username or password",
+      },
+    });
+  }
+
+  User.findOne({ username: req.body.username })
+    .then((user) => {
+      if (user) {
+        return user.checkPassword(req.body.password).then((match) => {
+          if (match) {
+            req.session.userId = user.id;
+            res.redirect(`/tweets/${req.session.userId}`);
+          } else {
+            renderInvalidUsername();
+          }
+        });
+      } else {
+        renderInvalidUsername();
+      }
+    })
+    .catch((error) => next(error));
 };
 
 module.exports.logout = (req, res) => {
@@ -57,9 +82,7 @@ module.exports.edit = (req, res, next) => {
 
 module.exports.doEdit = (req, res, next) => {
   User.findByIdAndUpdate(req.params.id, {
-    name: req.body.name,
-    username: req.body.username,
-    password: req.body.password,
+    user: req.body,
   })
     .then((user) => {
       res.redirect(`/profile/${user.id}`);

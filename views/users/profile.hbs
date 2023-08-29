@@ -11,7 +11,7 @@
           <div class="card-body">
             <div class="row">
               <div class="col-md-3 d-flex justify-content-center align-items-start">
-                <img src="{{user.avatar}}" alt="User Profile Image" class="img-fluid rounded-circle">
+                <img src="{{user.avatarUrl}}" alt="User Profile Image" class="img-fluid rounded-circle">
               </div>
               <div class="col-md-9">
                 <div class="d-flex justify-content-between">
@@ -19,6 +19,8 @@
                   <a class="btn btn-primary me-2" href="/profile/{{user.id}}/edit">Edit</a>
                 </div>                
                 <p class="card-text">Name: {{user.name}}</p>
+                <p class="card-text">Email: {{user.email}}</p>
+                <p class="card-text">Register: {{prettyDate user.createdAt}}</p>
                 <ul class="list-unstyled">
                   <li>Tweets: {{tweets.length}}</li>
                 </ul>

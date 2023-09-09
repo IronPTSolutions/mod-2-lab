@@ -1,0 +1,26 @@
+<div class="card mb-2">
+  <div class="card-body">
+    {{#if cantDelete}}
+      <div class="d-flex justify-content-end">
+        Created:
+        {{prettyDate tweet.createdAt}}
+      </div>
+    {{else}}
+      <div class="d-flex justify-content-between">
+        <p>Created by: {{tweet.user.name}}</p>
+        {{tweet.daysSinceCreated}}
+      </div>
+    {{/if}}
+    <h5 class="card-title">{{tweet.title}}</h5>
+    <p class="card-text">{{tweet.message}}</p>
+  </div>
+  {{#if cantDelete}}
+    <form
+      method="POST"
+      class="text-center"
+      action="/tweets/{{tweet.id}}/delete"
+    >
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+  {{/if}}
+</div>

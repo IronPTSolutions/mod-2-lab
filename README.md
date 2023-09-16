@@ -111,3 +111,22 @@ Dale cariño al CSS, barra de navegación, footer, formularios, listados, etc...
 ## Entrega
 
 Enviar a los TA’s el enlace a vuestro repositorio en github 
+
+
+## Deploy
+
+- Registrarse en https://fly.io/
+- Construir `Dockerfile`
+```
+flyctl auth login
+flyctl launch --no-deploy
+flyctl secrets set MONGODB_URI='...'
+flyctl secrets set CLOUDINARY_NAME='...'
+flyctl secrets set CLOUDINARY_KEY='...'
+flyctl secrets set CLOUDINARY_SECRET='...'
+flyctl deploy
+```
+
+- Añadir el domonio `https://ex-templating.fly.dev` a la consola de developers de google. 
+
+https://mod-2-lab.fly.dev/profile

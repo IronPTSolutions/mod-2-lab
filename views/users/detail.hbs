@@ -1,0 +1,35 @@
+<div class="card" style="width: 18rem;">
+  <img src={{user.avatar}} class="card-img-top" alt="user-avatar">
+  <div class="card-body">
+    <h3 class="text-primary">@{{user.userName}}</h3>
+    
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Name : {{user.name}}</li>
+    <li class="list-group-item">Created at: {{inputDateFormat user.createdAt}}</li>
+    
+  </ul>
+ 
+</div>
+
+
+
+    <h3>Tweets</h3>
+
+    {{#each tweets as |tweet|}}
+
+    <div class="card" style="width: 18rem;">
+    <div class="card-body">
+    
+        <h5 class="card-title">{{tweet.user.userName}}</h5>
+        <p class="card-subtitle mb-2 text-body-secondary">{{inputDateFormat tweet.createdAt}}</p>
+        <h6 class="card-text">{{tweet.message}}</h6>
+   
+    </form>
+    
+  </div>
+    </div>
+{{/each}} 
+
+
+ 

@@ -1,0 +1,58 @@
+<nav class="navbar">
+  <div class="container d-flex justify-space-between">
+    {{#if currentUser}}
+      <a
+        href="/tweets/{{currentUser.username}}"
+        class="link-light link-underline link-underline-opacity-0"
+      >
+        <img
+          src="/Img/NavBar-Logo.png"
+          class="rounded-circle"
+          id="rounded-circle-navbar"
+          href="/tweets/{{currentUser.username}}"
+          alt="User profile"
+        />
+        Home
+      </a>
+    {{else}}
+      <a
+        href="/tweets/{{currentUser.username}}"
+        class="link-light link-underline link-underline-opacity-0"
+      >
+        <img
+          src="/Img/NavBar-Logo.png"
+          class="rounded-circle text"
+          id="rounded-circle-navbar"
+          href="/tweets"
+          alt="User profile"
+        />
+        Home
+      </a>
+    {{/if}}
+    {{#if currentUser}}
+      <div class="d-flex align-items-center flex-column">
+        <a href="/profile/{{currentUser.id}}">
+          <img
+            src="{{currentUser.avatarUrl}}"
+            class="rounded-circle"
+            id="rounded-circle-navbar"
+            href="/profile/{{currentUser.id}}"
+            alt="User profile"
+          />
+        </a>
+        <a
+          class="text-capitalize text-white"
+          href="/profile/{{currentUser.id}}"
+        >{{currentUser.username}}</a>
+
+      </div>
+      <form method="POST" action="/logout" class="m-0">
+        <button type="submit" class="btn btn-danger">Log out</button>
+      </form>
+    {{else}}
+      <div class="d-flex">
+        <a class="btn btn-primary" href="/login">Log in</a>
+      </div>
+    {{/if}}
+  </div>
+</nav>

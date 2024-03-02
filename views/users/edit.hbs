@@ -1,0 +1,43 @@
+<div class="container mb-5">
+  <div class="mb-3 mt-3">
+    <a class="btn btn-primary" href="/profile/{{user.id}}">Back</a>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">Edit</h1>
+      <form method="POST" action="/profile/{{user.id}}">
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input
+            name="name"
+            type="text"
+            class="form-control"
+            placeholder="Name User"
+            value="{{user.name}}"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">UserName</label>
+          <input
+            name="username"
+            type="text"
+            class="form-control"
+            placeholder="User Name"
+            value="{{user.username}}"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input
+            name="email"
+            type="text"
+            class="form-control"
+            placeholder="User Name"
+            value="{{user.username}}"
+          />
+        </div>
+        <button type="submit" class="btn btn-success">Edit</button>
+      </form>
+    </div>
+  </div>
+</div>

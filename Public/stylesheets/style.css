@@ -1,0 +1,23 @@
+#rounded-circle-navbar {
+  width: 50px;
+  height: 50px;
+}
+
+nav {
+  background-color: #1da1f3;
+}
+
+body {
+  position: static;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+footer {
+  position: inherit;
+  width: 100%;
+  background-color: #1da1f3;
+}
